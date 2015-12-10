@@ -33,9 +33,11 @@ public class SmoochCordova extends CordovaPlugin {
             this.setUserProperties(args, callbackContext);
         } else if (action.equals("track")) {
             this.track(args, callbackContext);
-        } else {
-        	callbackContext.error("Smooch method not supported");
-        	return false;
+        } else if (action.equals("login")) {
+            this.login(args, callbackContext);
+	} else {
+	    callbackContext.error("Smooch method not supported");
+	    return false;
         }
 
         return true;
@@ -93,6 +95,20 @@ public class SmoochCordova extends CordovaPlugin {
         }
 
     }
+
+    private void login(JSONArray args, CallbackContext callbackContext) {
+        try {
+            String userName = args.getString(0);
+            String token = args.getString(1);
+            Smooch.login(userName,token);
+
+            callbackContext.success();
+        } catch (JSONException e) {
+            callbackContext.error(e.getMessage());
+        }
+
+    }
+
 
     private static Map<String, Object> toMap(JSONObject object) throws JSONException {
         Map<String, Object> map = new HashMap<String, Object>();

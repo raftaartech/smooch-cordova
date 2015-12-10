@@ -8,16 +8,20 @@ var Smooch = {
     show: function(success, error) {
         cordova.exec(success, error, "SmoochCordova", "show", []);
     },
-    
-    setUser: function(user, success, error) {  
+
+    setUser: function(user, success, error) {
         cordova.exec(success, error, "SmoochCordova", "setUser", [user]);
     },
 
-    setUserProperties: function(properties, success, error) {  
+    setUserProperties: function(properties, success, error) {
         cordova.exec(success, error, "SmoochCordova", "setUserProperties", [properties]);
     },
 
     track: function(eventName, success, error) {
         cordova.exec(success, error, "SmoochCordova", "track", [eventName]);
+    },
+    login: function(userName, token, success, error) {
+      cordova.exec(success, error, "SmoochCordova", "login", [userName, token]);
     }
+
 };
