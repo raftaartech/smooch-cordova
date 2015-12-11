@@ -20,8 +20,13 @@ var Smooch = {
     track: function(eventName, success, error) {
         cordova.exec(success, error, "SmoochCordova", "track", [eventName]);
     },
-    login: function(userName, token, success, error) {
-      cordova.exec(success, error, "SmoochCordova", "login", [userName, token]);
+    login: function(userName, success, error) {
+      cordova.exec(success, error, "SmoochCordova", "login", [userName]);
+    },
+    logout: function(success, error) {
+      cordova.exec(success, error, "SmoochCordova", "logout", []);
     }
+
+
 
 };

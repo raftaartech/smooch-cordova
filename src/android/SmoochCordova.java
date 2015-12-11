@@ -99,11 +99,11 @@ public class SmoochCordova extends CordovaPlugin {
     private void login(JSONArray args, CallbackContext callbackContext) {
         try {
             String userName = args.getString(0);
-            String token = args.getString(1);
-            Smooch.login(userName,token);
+            Smooch.login(userName,null);
 
             callbackContext.success();
         } catch (JSONException e) {
+	    Log.e("SmoochCordova",e.getMessage());
             callbackContext.error(e.getMessage());
         }
 
