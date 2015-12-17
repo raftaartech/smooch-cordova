@@ -115,7 +115,7 @@ public class SmoochCordova extends CordovaPlugin {
         try {
             Smooch.logout();
             callbackContext.success();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e("SmoochCordova",e.getMessage());
             callbackContext.error(e.getMessage());
         }
