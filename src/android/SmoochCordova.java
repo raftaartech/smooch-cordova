@@ -113,7 +113,7 @@ public class SmoochCordova extends CordovaPlugin {
 
     private void logout(CallbackContext callbackContext) {
         try {
-            Smooch.logout(null);
+            Smooch.logout();
             callbackContext.success();
         } catch (JSONException e) {
             Log.e("SmoochCordova",e.getMessage());
