@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class SmoochCordova extends CordovaPlugin {
 
-	@Override
+  @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
             Log.w("SmoochCordova", "Initialize must be done from the Application Class");
@@ -113,7 +113,7 @@ public class SmoochCordova extends CordovaPlugin {
 
     private void logout(CallbackContext callbackContext) {
         try {
-            Smooch.logout(userName,null);
+            Smooch.logout(null);
             callbackContext.success();
         } catch (JSONException e) {
             Log.e("SmoochCordova",e.getMessage());
