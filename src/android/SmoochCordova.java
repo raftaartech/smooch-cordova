@@ -4,6 +4,7 @@ import io.smooch.core.*;
 import io.smooch.ui.ConversationActivity;
 
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CallbackContext;
 
 import android.util.Log;
@@ -23,8 +24,7 @@ public class SmoochCordova extends CordovaPlugin {
   @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("init")) {
-            Log.w("SmoochCordova", "Initialize must be done from the Application Class");
-            return true;
+            this.init(args, callbackContext);
         } else if (action.equals("show")) {
             this.show(callbackContext);
         } else if (action.equals("setUser")) {
@@ -43,6 +43,18 @@ public class SmoochCordova extends CordovaPlugin {
         }
 
         return true;
+    }
+
+    private void init(JSONArray args, CallbackContext callbackContext) {
+        try {
+            JSONObject appInfo = args.getJSONObject(0);
+            String appToken = appInfo.getString("appToken");
+            Smooch.init(this.cordova.getActivity().getApplication(), appToken);
+            callbackContext.success();
+        } catch (JSONException e) {
+            callbackContext.error(e.getMessage());
+        }
+
     }
 
     private void show(CallbackContext callbackContext) {
